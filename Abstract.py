@@ -8,12 +8,14 @@ class ACommandExecution(ABC):
         self.COMMAND_PARAMS = []
         self.COMMAND_LIST = {}
         self.event = None
+        self.waiting_flag = False
 
     def execution(self, command):
         self.COMMAND_LIST[command]()
 
     def set_event(self, event):
         self.event = event
+
 
 class AAuth(ABC):
     @abstractmethod
@@ -38,7 +40,7 @@ class ThreadMode(AMode):
         for event in longpoll.listen():
             thread = Thread(target=func, args=(event,))
             thread.start()
-            thread.join()
+            #thread.join()
 
 
 class SimpleMode(AMode):
