@@ -5,10 +5,9 @@ from threading import Thread
 
 class ACommandExecution(ABC):
     def __init__(self):
-        self.COMMAND_PARAMS = []
+        self.COMMAND_PARAMS = {}
         self.COMMAND_LIST = {}
         self.event = None
-        self.waiting_flag = False
 
     def execution(self, command):
         self.COMMAND_LIST[command]()
